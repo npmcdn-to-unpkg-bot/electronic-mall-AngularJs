@@ -6,20 +6,40 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     $stateProvider
         .state('shows', {
             url: '/shows',
-            templateUrl: 'view/shows.html',
-            controller: 'ShowsController'
+            views: {
+                '': {
+                    templateUrl: 'view/shows.html'
+                },
+                'topbar@shows': {
+                    templateUrl: 'view/topbar.html'
+                },
+                'main@shows': {
+                    templateUrl: 'view/detail.html'
+                }
+            }
+        })
+        .state('shows.shoppingCart', {
+            url: '/shoppingCart',
+            views: {
+                'main@shows': {
+                    templateUrl: 'view/shoppingCart.html',
+                }
+            }
 
         })
-        .state('shows.detail', {
-            url: '/detail',
-            templateUrl: 'view/detail.html',
-            controller: 'ShowsDetailController'
-        });
-}]);
-app.controller('ShowsController', ['$scope', function($scope) {
-    $scope.shows = ["A", "Set", "Of", "Shows"];
-}]);
-app.controller('ShowsDetailController', ['$scope', function($scope) {
-    $scope.things = ["A", "Set", "Of", "Things"];
-}]);
+        .state('shows.personal', {
+            url: '/personal',
+            views: {
+                'main@shows': {
+                    templateUrl: 'view/personal.html',
+                    controller: function($scope, $state) {
+                        $scope.addUserType = function() {
+                            $state.go("shows.personal.addusertype");
+                        }
+                    }
+                }
+            }
+        })
 
+
+}]);
