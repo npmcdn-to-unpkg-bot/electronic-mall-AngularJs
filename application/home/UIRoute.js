@@ -6,13 +6,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     $stateProvider
         .state('shows', {
             url: '/shows',
-            templateUrl: 'tpls/shows.html',
+            templateUrl: 'view/shows.html',
             controller: 'ShowsController'
 
         })
         .state('shows.detail', {
             url: '/detail',
-            templateUrl: 'tpls/detail.html',
+            templateUrl: 'view/detail.html',
             controller: 'ShowsDetailController'
         });
 }]);
